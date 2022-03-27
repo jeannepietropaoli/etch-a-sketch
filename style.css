@@ -1,0 +1,21 @@
+.box {
+    border: solid black 1px;
+    flex: 1;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 800px;
+    height: 800px;
+}
+
+.lightItUp {
+    background-color: blue;
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
