@@ -42,10 +42,14 @@ function deleteCurrentGrid(){
 createGrid(rows, columns);  //creates the first grid when user load the page
 
 CLEARBUTTON.addEventListener('click', function clearGrid(){
-    rows = prompt('How many squares do you want the new grid to be?');
+    rows = prompt('How many squares per lign do you want the new grid to be?(1 to 99)');
+    while(rows<=0 || rows>99){
+        alert('out of limit, choose a number between 1 and 99 included');
+        rows = prompt('How many squares per lign do you want the new grid to be?(1 to 99)');
+    }
+
     deleteCurrentGrid();  
     createGrid(rows, columns);
-
     boxes.forEach(box => {
         box.classList.remove('lightItUp');
     })
