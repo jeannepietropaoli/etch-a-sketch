@@ -10,10 +10,6 @@
     height: 800px;
 }
 
-.lightItUp {
-    background-color: blue;
-}
-
 .column {
     flex: 1;
     display: flex;

@@ -3,7 +3,10 @@ let columns;
 let column;
 let container = document.querySelector('.container');
 const CLEARBUTTON = document.querySelector('.clearButton');
+const RAINBOWBUTTON = document.querySelector('.rainbowMode');
+let rainbowActivated = false
 let boxes;
+let color='red';
 
 function createGrid(rows,columns) {
     columns = rows;
@@ -20,21 +23,36 @@ function createGrid(rows,columns) {
     }
     boxes = document.querySelectorAll('.box');
 
-    LightItUp();
-}
-
-function LightItUp(){
-    boxes.forEach(box => {
-        box.addEventListener('mouseover', function lighBox(){
-            box.classList.add('lightItUp');
-        })
-    });
+    LightItUp(color);
 }
 
 function deleteCurrentGrid(){
     while(container.firstChild){
         container.removeChild(container.firstChild);
     }
+}
+
+function rainbowMode(){
+    color = `rgb(${generateRandomRGBValue()},${generateRandomRGBValue()}, ${generateRandomRGBValue()})`;
+    return color;
+}
+
+function generateRandomRGBValue() {
+    randomRGBValue = Math.floor(Math.random()*256);
+    return randomRGBValue;
+}
+
+function LightItUp(color){
+    boxes.forEach(box => {
+        box.addEventListener('mouseover', function lighBox(){
+            if (rainbowActivated) {
+                box.style.backgroundColor = rainbowMode();
+            } 
+            else {
+                box.style.backgroundColor = color;
+            } 
+        })
+    });
 }
 
 //program's start, end of functions init
@@ -47,10 +65,17 @@ CLEARBUTTON.addEventListener('click', function clearGrid(){
         alert('out of limit, choose a number between 1 and 99 included');
         rows = prompt('How many squares per lign do you want the new grid to be?(1 to 99)');
     }
-
     deleteCurrentGrid();  
     createGrid(rows, columns);
     boxes.forEach(box => {
         box.classList.remove('lightItUp');
     })
 })
+
+RAINBOWBUTTON.addEventListener('click', function rainbow(){
+    rainbowActivated = true;
+    rainbowMode();
+    LightItUp(color);
+})
+
+
