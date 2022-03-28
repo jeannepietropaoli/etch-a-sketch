@@ -5,14 +5,17 @@ let container = document.querySelector('.container');
 const CLEARBUTTON = document.querySelector('.clearButton');
 const RAINBOWBUTTON = document.querySelector('.rainbowMode');
 const GRADIENTBUTTON = document.querySelector('.gradient');
+const ERASERBUTTON = document.querySelector('.eraser');
 let rainbowActivated = false;
 let gradientActivated = false;
 let boxes;
-const DEFAULTCOLOR= 'rgb(255,28,200)';
-let color= DEFAULTCOLOR;
+const DEFAULTCOLOR= 'rgb(255,255,255)';
+const DEFAULTHOVERCOLOR='rgb(255,20,100)';
+let color= DEFAULTHOVERCOLOR;
 let r;
 let g;
 let b;
+let isClicked=false;
 
 function createGrid(rows,columns) {
     columns = rows;
@@ -25,7 +28,7 @@ function createGrid(rows,columns) {
                 box = document.createElement('div');
                 column.appendChild(box);
                 box.classList.add('box');
-                box.style.backgroundColor='rgb(255,20,100)';
+                box.style.backgroundColor= DEFAULTCOLOR;
         }
     }
     boxes = document.querySelectorAll('.box');
@@ -78,26 +81,32 @@ function getRGBValues(str) {
       b= +vals[2]
 }
 
-/*function isDrawingActivated() {
-    boxes.forEach(box => {
-        box.addEventListener('click',)
-    })
-}*/
+function isDrawingActivated() {
+    if (isClicked===false){
+        isClicked=true;
+    }else {
+        isClicked=false;
+    }
+}
 
 function LightItUp(color){
     boxes.forEach(box => {
+        box.addEventListener('click', isDrawingActivated);
+        
         box.addEventListener('mouseover', function lighBox(){
-            if (rainbowActivated) {
-                box.style.backgroundColor = rainbowMode();
-            } 
-            else if (gradientActivated) {
-                box.style.backgroundColor = returnChangedColor(box.style.backgroundColor);
+            if (isClicked===true){
+                if (rainbowActivated) {
+                    box.style.backgroundColor = rainbowMode();
+                } 
+                else if (gradientActivated) {
+                    box.style.backgroundColor = returnChangedColor(box.style.backgroundColor);
+                }
+                else {
+                    console.log(box.style.backgroundColor);
+                    box.style.backgroundColor = color;
+                    console.log(box.style.backgroundColor);
+                } 
             }
-            else {
-                console.log(box.style.backgroundColor);
-                box.style.backgroundColor = color;
-                console.log(box.style.backgroundColor);
-            } 
         })
     })  
 }
@@ -105,7 +114,7 @@ function LightItUp(color){
 function resetInitialParameters(){
     rainbowActivated = false;
     gradientActivated = false;
-    color = DEFAULTCOLOR;
+    color = DEFAULTHOVERCOLOR;
 }
 
 //program's start, end of functions init
@@ -135,6 +144,12 @@ RAINBOWBUTTON.addEventListener('click', function rainbow(){
 GRADIENTBUTTON.addEventListener('click', function gradient(){
     resetInitialParameters();
     gradientActivated = true;
+    LightItUp(color);
+})
+
+ERASERBUTTON.addEventListener('click', function erase(){
+    resetInitialParameters();
+    color = 'rgb(255,255,255)';
     LightItUp(color);
 })
 
