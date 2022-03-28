@@ -1,4 +1,4 @@
-let rows = 30;
+let rows = 20;
 let columns;
 let column;
 let container = document.querySelector('.container');
@@ -6,6 +6,7 @@ const CLEARBUTTON = document.querySelector('.clearButton');
 const RAINBOWBUTTON = document.querySelector('.rainbowMode');
 const GRADIENTBUTTON = document.querySelector('.gradient');
 const ERASERBUTTON = document.querySelector('.eraser');
+const SLIDER = document.querySelector('#slider');
 let rainbowActivated = false;
 let gradientActivated = false;
 let boxes;
@@ -17,7 +18,7 @@ let g;
 let b;
 let isClicked=false;
 
-function createGrid(rows,columns) {
+function createGrid(rows,columns) {    
     columns = rows;
     for (let i=0; i<columns; i++) {                  // creates a div for each column
         column = document.createElement('div');
@@ -117,22 +118,38 @@ function resetInitialParameters(){
     color = DEFAULTHOVERCOLOR;
 }
 
+function resetGrid () {
+
+}
+
 //program's start, end of functions init
 
 createGrid(rows, columns);  //creates the first grid when user load the page
 
+SLIDER.setAttribute('value', rows);
+
+SLIDER.addEventListener('click', function adjustSize(){  //link the slider value with the number of rows of the grid
+    let newRows=this.value;
+    console.log(newRows);
+    if (newRows!==rows){
+        rows = newRows;
+        deleteCurrentGrid();
+        resetInitialParameters();
+        createGrid(rows, columns);
+    }
+    
+})
+
 CLEARBUTTON.addEventListener('click', function clearGrid(){
-    rows = prompt('How many squares per lign do you want the new grid to be?(1 to 99)');
+
+    /*rows = prompt('How many squares per lign do you want the new grid to be?(1 to 99)');
     while(rows<=0 || rows>99){
         alert('out of limit, choose a number between 1 and 99 included');
         rows = prompt('How many squares per lign do you want the new grid to be?(1 to 99)');
-    }
+    }*/
     deleteCurrentGrid();
     resetInitialParameters();
     createGrid(rows, columns);
-    boxes.forEach(box => {
-        box.classList.remove('lightItUp');
-    })
 })
 
 RAINBOWBUTTON.addEventListener('click', function rainbow(){
