@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Etch-a-sketch project</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <button class="clearButton">Clear the grid</button>
+    <button class="rainbowMode">Rainbow mode</button>
+    <button class="gradient">Gradient</button>
+    <div class="container"></div>
+
+    <script>
+
+let container =  document.querySelector('.container');
+container.style.backgroundColor='rgb(180,80,35)';
+containerColor = container.style.backgroundColor;
+console.log(containerColor);
+returnChangedColor(containerColor);
+
+function returnChangedColor(containerColor){
+    getRGBValues(containerColor);
+    changeRGB(r,g,b);
+    console.log(color);
+}
+
+function changeRGB(r,g,b){
+    r = r*0.5;
+    g =+ g*0.5;
+    b = b*0.5;
+    if (r>255) r=255;
+    if (g>255) g=255;
+    if (b>255) b=255;
+
+    color=`rgb(${Math.round(r)},${Math.round(g)}, ${Math.round(b)})`;
+    console.log(color);
+    return  color;
+}
+
+function getRGBValues(str) {
+    let vals = str.substring(str.indexOf('(') +1, str.length -1).split(', ');
+      r= +vals[0],
+      g= +vals[1],
+      b= +vals[2]
+      return r,g,b;
+}
+
+function gradientMode() {
+    getRGBValues(box.style.backgroundColor);
+    changeRGB(r,g,b);
+    console.log(color);
+    return color;
+}
+    </script>
+</body>
+
+</html>
