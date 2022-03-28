@@ -16,46 +16,37 @@
 
     <script>
 
-let container =  document.querySelector('.container');
-container.style.backgroundColor='rgb(180,80,35)';
-containerColor = container.style.backgroundColor;
-console.log(containerColor);
-returnChangedColor(containerColor);
-
-function returnChangedColor(containerColor){
-    getRGBValues(containerColor);
-    changeRGB(r,g,b);
-    console.log(color);
-}
-
-function changeRGB(r,g,b){
-    r = r*0.5;
-    g =+ g*0.5;
-    b = b*0.5;
-    if (r>255) r=255;
-    if (g>255) g=255;
-    if (b>255) b=255;
-
-    color=`rgb(${Math.round(r)},${Math.round(g)}, ${Math.round(b)})`;
-    console.log(color);
-    return  color;
-}
-
 function getRGBValues(str) {
     let vals = str.substring(str.indexOf('(') +1, str.length -1).split(', ');
-      r= +vals[0],
-      g= +vals[1],
-      b= +vals[2]
-      return r,g,b;
+      r= vals[0];
+      g= vals[1];
+      b= vals[2];
+      
 }
 
-function gradientMode() {
-    getRGBValues(box.style.backgroundColor);
-    changeRGB(r,g,b);
-    console.log(color);
-    return color;
+function convertRGBToHex(r,g,b) {
+    r = r.toString(16);
+    .length == 1 ? "0" + hexadecimal : hexadecimal;
+    g = g.toString(16);
+    b = b.toString(16);
 }
+
+color = 'rgb(23,78,175)';
+container = document.querySelector('.container');
+container.style.backgroundColor = color;
+console.log(container.style.backgroundColor);
+
+getRGBValues(container.style.backgroundColor);
+console.log(`${r} ${g} ${b}`);
+convertRGBToHex;
+
+
     </script>
 </body>
 
 </html>
+
+SLIDER.setAttribute('value', rows);
+
+COLORPICKER.setAttribute('value', convertRGBToHex(color));
+console.log(convertRGBToHex(color));

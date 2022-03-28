@@ -7,6 +7,7 @@ const RAINBOWBUTTON = document.querySelector('.rainbowMode');
 const GRADIENTBUTTON = document.querySelector('.gradient');
 const ERASERBUTTON = document.querySelector('.eraser');
 const SLIDER = document.querySelector('#slider');
+const COLORPICKER = document.querySelector('#colorPicker');
 let rainbowActivated = false;
 let gradientActivated = false;
 let boxes;
@@ -75,13 +76,6 @@ function changeRGB(r,g,b){
     return  color;
 }
 
-function getRGBValues(str) {
-    let vals = str.substring(str.indexOf('(') +1, str.length -1).split(', ');
-      r= +vals[0],
-      g= +vals[1],
-      b= +vals[2]
-}
-
 function isDrawingActivated() {
     if (isClicked===false){
         isClicked=true;
@@ -118,13 +112,34 @@ function resetInitialParameters(){
     color = DEFAULTHOVERCOLOR;
 }
 
-function resetGrid () {
+function RGBToHex(str) {
+    let vals = str.substring(4, str.length-1).replace(/ /g, '').split(',');
+      r= +vals[0];
+      g= +vals[1];
+      b= +vals[2];
 
-}
+    r = r.toString(16);
+    g = g.toString(16);
+    b = b.toString(16);
+
+    console.log(g);
+  
+    if (r.length == 1)
+      r = "0" + r;
+    if (g.length == 1)
+      g = "0" + g;
+    if (b.length == 1)
+      b = "0" + b;
+  
+    return "#" + r + g + b;
+  }
 
 //program's start, end of functions init
 
 createGrid(rows, columns);  //creates the first grid when user load the page
+
+console.log(color);
+COLORPICKER.setAttribute('value' , RGBToHex(color));
 
 SLIDER.setAttribute('value', rows);
 
@@ -137,16 +152,9 @@ SLIDER.addEventListener('click', function adjustSize(){  //link the slider value
         resetInitialParameters();
         createGrid(rows, columns);
     }
-    
 })
 
 CLEARBUTTON.addEventListener('click', function clearGrid(){
-
-    /*rows = prompt('How many squares per lign do you want the new grid to be?(1 to 99)');
-    while(rows<=0 || rows>99){
-        alert('out of limit, choose a number between 1 and 99 included');
-        rows = prompt('How many squares per lign do you want the new grid to be?(1 to 99)');
-    }*/
     deleteCurrentGrid();
     resetInitialParameters();
     createGrid(rows, columns);
@@ -169,5 +177,3 @@ ERASERBUTTON.addEventListener('click', function erase(){
     color = 'rgb(255,255,255)';
     LightItUp(color);
 })
-
-
