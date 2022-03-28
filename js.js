@@ -1,4 +1,4 @@
-let rows = 20;
+let rows = 25;
 let columns;
 let column;
 let container = document.querySelector('.container');
@@ -8,12 +8,14 @@ const GRADIENTBUTTON = document.querySelector('.gradient');
 const ERASERBUTTON = document.querySelector('.eraser');
 const SLIDER = document.querySelector('#slider');
 const COLORPICKER = document.querySelector('#colorPicker');
-
+const BACKGROUNDPICKER =document.querySelector('#backgroundPicker');
+const BORDERS = document.querySelector('.borders');
+let backgroundChanged = false;
 let rainbowActivated = false;
 let gradientActivated = false;
 let eraser = false;
 let boxes;
-const DEFAULTCOLOR= 'rgb(255,255,255)';
+let DEFAULTCOLOR= 'rgb(255,255,255)';
 const DEFAULTHOVERCOLOR='rgb(255,100,100)';
 let color= DEFAULTHOVERCOLOR;
 let r;
@@ -32,7 +34,13 @@ function createGrid(rows,columns) {
                 box = document.createElement('div');
                 column.appendChild(box);
                 box.classList.add('box');
-                box.style.backgroundColor= DEFAULTCOLOR;
+                box.classList.add('borderToggle');
+                if  (BACKGROUNDPICKER.value !== RGBToHex(DEFAULTCOLOR)){
+                    box.style.backgroundColor= BACKGROUNDPICKER.value;
+                    DEFAULTCOLOR = BACKGROUNDPICKER.value;
+                }else{
+                    box.style.backgroundColor= DEFAULTCOLOR;
+                }
         }
     }
     boxes = document.querySelectorAll('.box');
@@ -105,7 +113,7 @@ function LightItUp(color){
                     box.style.backgroundColor = gradientMode(box.style.backgroundColor);
                 }
                 else if (eraser){
-                    box.style.backgroundColor = 'rgb(255,255,255)';
+                        box.style.backgroundColor = DEFAULTCOLOR;
                 }
                 else {
                     if  (COLORPICKER.value !== RGBToHex(DEFAULTHOVERCOLOR)){
@@ -113,17 +121,22 @@ function LightItUp(color){
                         box.style.backgroundColor = COLORPICKER.value;
                     } else {
                     box.style.backgroundColor = color;
-                } }
+                    }
+                } 
             }
         })
     })  
 }
 
 function resetInitialParameters(){
+    clearButtonFunctions();
+    color = DEFAULTHOVERCOLOR;
+}
+
+function clearButtonFunctions() {
     rainbowActivated = false;
     eraser = false;
     gradientActivated = false;
-    color = DEFAULTHOVERCOLOR;
 }
 
 function RGBToHex(str) {
@@ -163,6 +176,8 @@ function RGBToHex(str) {
 
 //program's start, end of functions init
 
+BACKGROUNDPICKER.setAttribute('value', RGBToHex(DEFAULTCOLOR));
+
 createGrid(rows, columns);  //creates the first grid when user load the page
 
 COLORPICKER.setAttribute('value' , RGBToHex(color));
@@ -186,18 +201,36 @@ CLEARBUTTON.addEventListener('click', function clearGrid(){
 })
 
 RAINBOWBUTTON.addEventListener('click', function rainbow(){
+    gradientActivated = false;
+    eraser = false;
     (rainbowActivated===false)? rainbowActivated=true : rainbowActivated=false;
     if (rainbowActivated === false) color = DEFAULTHOVERCOLOR;
     LightItUp(color);
 })
 
 GRADIENTBUTTON.addEventListener('click', function gradient(){
+    rainbowActivated = false;
+    eraser = false;
     (gradientActivated ===false)? gradientActivated =true : gradientActivated =false;
     if (gradientActivated === false) color = DEFAULTHOVERCOLOR;
     LightItUp(color);
 })
 
 ERASERBUTTON.addEventListener('click', function eraseFctn(){
+    rainbowActivated = false;
+    gradientActivated = false;
     (eraser===false)? eraser=true : eraser=false;
     LightItUp(color);
+})
+
+BACKGROUNDPICKER.addEventListener('change', function(){
+    deleteCurrentGrid();
+    resetInitialParameters();
+    createGrid(rows, columns);
+})
+
+BORDERS.addEventListener ('click', function toggleBorders(){
+    boxes.forEach(box => {
+        box.classList.toggle('borderToggle');
+    })
 })

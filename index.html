@@ -10,16 +10,22 @@
 </head>
 
 <body>
-    <div>
-        <button class="clearButton">Clear the grid</button>
-        <input type="range" min="2" max="99" id="slider">
-        <input type="color" id="colorPicker" name="Pencil color">
-        <input type="color" id="backgroundPicker" name="Pencil color">
+    <h1>Etch a skecth</h1>
+    <div class="gameAndMenu">
+        <div class="container"></div>
+        <div class="menu">
+            <button class="clearButton">Reset</button>
+            <div class="colorPickers">
+                <input type="color" id="colorPicker" name="Pencil color">
+                <input type="color" id="backgroundPicker" name="Background color">
+            </div>
+            <button class="rainbowMode">Toggle Rainbow mode</button>
+            <button class="gradient">Toggle Gradient Mode</button>
+            <button class="eraser">Toggle Eraser mode</button>
+            <button class="borders">Toggle pixel borders</button>
+            <input type="range" min="2" max="99" id="slider">
+        </div>
     </div>
-    <button class="rainbowMode">Toggle Rainbow mode</button>
-    <button class="gradient">Toggle Gradient Mode</button>
-    <button class="eraser">Toggle Eraser mode</button>
-    <div class="container"></div>
 </body>
 
 </html>
