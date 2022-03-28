@@ -8,6 +8,7 @@ const GRADIENTBUTTON = document.querySelector('.gradient');
 const ERASERBUTTON = document.querySelector('.eraser');
 const SLIDER = document.querySelector('#slider');
 const COLORPICKER = document.querySelector('#colorPicker');
+
 let rainbowActivated = false;
 let gradientActivated = false;
 let eraser = false;
@@ -120,6 +121,7 @@ function LightItUp(color){
 
 function resetInitialParameters(){
     rainbowActivated = false;
+    eraser = false;
     gradientActivated = false;
     color = DEFAULTHOVERCOLOR;
 }
@@ -184,19 +186,18 @@ CLEARBUTTON.addEventListener('click', function clearGrid(){
 })
 
 RAINBOWBUTTON.addEventListener('click', function rainbow(){
-    resetInitialParameters();
-    rainbowActivated = true;
+    (rainbowActivated===false)? rainbowActivated=true : rainbowActivated=false;
+    if (rainbowActivated === false) color = DEFAULTHOVERCOLOR;
     LightItUp(color);
 })
 
 GRADIENTBUTTON.addEventListener('click', function gradient(){
-    resetInitialParameters();
-    gradientActivated = true;
+    (gradientActivated ===false)? gradientActivated =true : gradientActivated =false;
+    if (gradientActivated === false) color = DEFAULTHOVERCOLOR;
     LightItUp(color);
 })
 
 ERASERBUTTON.addEventListener('click', function eraseFctn(){
-    resetInitialParameters();
     (eraser===false)? eraser=true : eraser=false;
     LightItUp(color);
 })
