@@ -16,37 +16,26 @@
 
     <script>
 
-function getRGBValues(str) {
-    let vals = str.substring(str.indexOf('(') +1, str.length -1).split(', ');
-      r= vals[0];
-      g= vals[1];
-      b= vals[2];
-      
+let color = '#f355ff'
+function hexToRGB(color) {
+    color = color.substring(1);   // remove the #before the hex color string
+    let colorSplit = [];
+
+    for (let index = 0; index < color.length; index += 2) {    // split the hex color string every 2 characters
+    colorSplit.push(color.slice(index, index + 2));
+  }
+  for (let j=0 ; j<colorSplit.length ; j++) {
+      colorSplit[j] = parseInt(colorSplit[j], 16);
+  }
+
+  colorSplit = colorSplit.join(',');
+  color = `rgb(${colorSplit})`
 }
 
-function convertRGBToHex(r,g,b) {
-    r = r.toString(16);
-    .length == 1 ? "0" + hexadecimal : hexadecimal;
-    g = g.toString(16);
-    b = b.toString(16);
-}
-
-color = 'rgb(23,78,175)';
-container = document.querySelector('.container');
-container.style.backgroundColor = color;
-console.log(container.style.backgroundColor);
-
-getRGBValues(container.style.backgroundColor);
-console.log(`${r} ${g} ${b}`);
-convertRGBToHex;
+  hexToRGB(color);
 
 
     </script>
 </body>
 
 </html>
-
-SLIDER.setAttribute('value', rows);
-
-COLORPICKER.setAttribute('value', convertRGBToHex(color));
-console.log(convertRGBToHex(color));

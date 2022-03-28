@@ -10,9 +10,10 @@ const SLIDER = document.querySelector('#slider');
 const COLORPICKER = document.querySelector('#colorPicker');
 let rainbowActivated = false;
 let gradientActivated = false;
+let eraser = false;
 let boxes;
 const DEFAULTCOLOR= 'rgb(255,255,255)';
-const DEFAULTHOVERCOLOR='rgb(255,20,100)';
+const DEFAULTHOVERCOLOR='rgb(255,100,100)';
 let color= DEFAULTHOVERCOLOR;
 let r;
 let g;
@@ -57,7 +58,14 @@ function rainbowMode(){
     return color;
 }
 
-function returnChangedColor(colorToAlter){
+function getRGBValues(str) {
+    let vals = str.substring(str.indexOf('(') +1, str.length -1).split(', ');
+      r= +vals[0],
+      g= +vals[1],
+      b= +vals[2]
+}
+
+function gradientMode(colorToAlter){
     getRGBValues(colorToAlter);
     changeRGB(r,g,b);
     return color;
@@ -72,7 +80,6 @@ function changeRGB(r,g,b){
     if (b>255) b=255;
 
     color=`rgb(${Math.round(r)},${Math.round(g)}, ${Math.round(b)})`;
-    console.log(color);
     return  color;
 }
 
@@ -94,13 +101,18 @@ function LightItUp(color){
                     box.style.backgroundColor = rainbowMode();
                 } 
                 else if (gradientActivated) {
-                    box.style.backgroundColor = returnChangedColor(box.style.backgroundColor);
+                    box.style.backgroundColor = gradientMode(box.style.backgroundColor);
+                }
+                else if (eraser){
+                    box.style.backgroundColor = 'rgb(255,255,255)';
                 }
                 else {
-                    console.log(box.style.backgroundColor);
+                    if  (COLORPICKER.value !== RGBToHex(DEFAULTHOVERCOLOR)){
+                        resetInitialParameters();
+                        box.style.backgroundColor = COLORPICKER.value;
+                    } else {
                     box.style.backgroundColor = color;
-                    console.log(box.style.backgroundColor);
-                } 
+                } }
             }
         })
     })  
@@ -122,8 +134,6 @@ function RGBToHex(str) {
     g = g.toString(16);
     b = b.toString(16);
 
-    console.log(g);
-  
     if (r.length == 1)
       r = "0" + r;
     if (g.length == 1)
@@ -134,18 +144,31 @@ function RGBToHex(str) {
     return "#" + r + g + b;
   }
 
+  function hexToRGB(color) {
+    color = color.substring(1);   // remove the #before the hex color string
+    let colorSplit = [];
+
+    for (let index = 0; index < color.length; index += 2) {    // split the hex color string every 2 characters
+    colorSplit.push(color.slice(index, index + 2));
+  }
+  for (let j=0 ; j<colorSplit.length ; j++) {
+      colorSplit[j] = parseInt(colorSplit[j], 16);
+  }
+
+  colorSplit = colorSplit.join(',');
+  color = `rgb(${colorSplit})`
+}
+
 //program's start, end of functions init
 
 createGrid(rows, columns);  //creates the first grid when user load the page
 
-console.log(color);
 COLORPICKER.setAttribute('value' , RGBToHex(color));
 
 SLIDER.setAttribute('value', rows);
 
 SLIDER.addEventListener('click', function adjustSize(){  //link the slider value with the number of rows of the grid
     let newRows=this.value;
-    console.log(newRows);
     if (newRows!==rows){
         rows = newRows;
         deleteCurrentGrid();
@@ -172,8 +195,8 @@ GRADIENTBUTTON.addEventListener('click', function gradient(){
     LightItUp(color);
 })
 
-ERASERBUTTON.addEventListener('click', function erase(){
+ERASERBUTTON.addEventListener('click', function eraseFctn(){
     resetInitialParameters();
-    color = 'rgb(255,255,255)';
+    (eraser===false)? eraser=true : eraser=false;
     LightItUp(color);
 })
