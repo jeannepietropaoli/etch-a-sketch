@@ -1,7 +1,7 @@
 let rows = 25;
 let columns;
 let column;
-let container = document.querySelector('.container');
+const CONTAINER = document.querySelector('.container');
 const CLEARBUTTON = document.querySelector('.clearButton');
 const RAINBOWBUTTON = document.querySelector('.rainbowMode');
 const GRADIENTBUTTON = document.querySelector('.gradient');
@@ -15,42 +15,41 @@ let rainbowActivated = false;
 let gradientActivated = false;
 let eraser = false;
 let boxes;
-let DEFAULTCOLOR= 'rgb(255,255,255)';
+let canvasBackgroundColor = 'rgb(255,255,255)';
 const DEFAULTHOVERCOLOR='rgb(229,36,63)';
 let color= DEFAULTHOVERCOLOR;
 let r;
 let g;
 let b;
-let isClicked=false;
+let isClicked = false;
 
 function createGrid(rows,columns) {    
     columns = rows;
     for (let i=0; i<columns; i++) {                  // creates a div for each column
         column = document.createElement('div');
         column.classList.add('column');
-        container.appendChild(column);
+        CONTAINER.appendChild(column);
 
         for (let j=0; j<rows; j++) {               // with x boxes (corresponding to the number of rows)
                 box = document.createElement('div');
                 column.appendChild(box);
                 box.classList.add('box');
                 box.classList.add('borderToggle');
-                if  (BACKGROUNDPICKER.value !== RGBToHex(DEFAULTCOLOR)){
+                if  (BACKGROUNDPICKER.value !== RGBToHex(canvasBackgroundColor)){
                     box.style.backgroundColor= BACKGROUNDPICKER.value;
-                    DEFAULTCOLOR = BACKGROUNDPICKER.value;
+                    canvasBackgroundColor  = BACKGROUNDPICKER.value;
                 }else{
-                    box.style.backgroundColor= DEFAULTCOLOR;
+                    box.style.backgroundColor= canvasBackgroundColor ;
                 }
         }
     }
     boxes = document.querySelectorAll('.box');
-
     LightItUp(color);
 }
 
 function deleteCurrentGrid(){
-    while(container.firstChild){
-        container.removeChild(container.firstChild);
+    while(CONTAINER.firstChild){
+        CONTAINER.removeChild(CONTAINER.firstChild);
     }
 }
 
@@ -103,7 +102,6 @@ function isDrawingActivated() {
 function LightItUp(color){
     boxes.forEach(box => {
         box.addEventListener('click', isDrawingActivated);
-        
         box.addEventListener('mouseover', function lighBox(){
             if (isClicked===true){
                 if (rainbowActivated) {
@@ -113,7 +111,7 @@ function LightItUp(color){
                     box.style.backgroundColor = gradientMode(box.style.backgroundColor);
                 }
                 else if (eraser){
-                        box.style.backgroundColor = DEFAULTCOLOR;
+                        box.style.backgroundColor = canvasBackgroundColor ;
                 }
                 else {
                     if  (COLORPICKER.value !== RGBToHex(DEFAULTHOVERCOLOR)){
@@ -149,34 +147,30 @@ function RGBToHex(str) {
     g = g.toString(16);
     b = b.toString(16);
 
-    if (r.length == 1)
-      r = "0" + r;
-    if (g.length == 1)
-      g = "0" + g;
-    if (b.length == 1)
-      b = "0" + b;
+    if (r.length == 1) r = "0" + r;
+    if (g.length == 1) g = "0" + g;
+    if (b.length == 1) b = "0" + b;
   
     return "#" + r + g + b;
   }
 
-  function hexToRGB(color) {
+function hexToRGB(color) {
     color = color.substring(1);   // remove the #before the hex color string
     let colorSplit = [];
 
     for (let index = 0; index < color.length; index += 2) {    // split the hex color string every 2 characters
-    colorSplit.push(color.slice(index, index + 2));
-  }
-  for (let j=0 ; j<colorSplit.length ; j++) {
-      colorSplit[j] = parseInt(colorSplit[j], 16);
-  }
-
-  colorSplit = colorSplit.join(',');
-  color = `rgb(${colorSplit})`
+        colorSplit.push(color.slice(index, index + 2));
+    }
+    for (let j=0 ; j<colorSplit.length ; j++) {
+        colorSplit[j] = parseInt(colorSplit[j], 16);
+    }
+    colorSplit = colorSplit.join(',');
+    color = `rgb(${colorSplit})`
 }
 
 //program's start, end of functions init
 
-BACKGROUNDPICKER.setAttribute('value', RGBToHex(DEFAULTCOLOR));
+BACKGROUNDPICKER.setAttribute('value', RGBToHex(canvasBackgroundColor ));
 
 createGrid(rows, columns);  //creates the first grid when user load the page
 
