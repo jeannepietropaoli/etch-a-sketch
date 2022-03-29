@@ -201,16 +201,30 @@ CLEARBUTTON.addEventListener('click', function clearGrid(){
 })
 
 RAINBOWBUTTON.addEventListener('click', function rainbow(){
+    RAINBOWBUTTON.classList.toggle('pushed');
     gradientActivated = false;
     eraser = false;
+    if (ERASERBUTTON.classList.contains('pushed')){
+        ERASERBUTTON.classList.remove('pushed');
+    }
+    if (GRADIENTBUTTON.classList.contains('pushed')){
+        GRADIENTBUTTON.classList.remove('pushed');
+    }
     (rainbowActivated===false)? rainbowActivated=true : rainbowActivated=false;
     if (rainbowActivated === false) color = DEFAULTHOVERCOLOR;
     LightItUp(color);
 })
 
 GRADIENTBUTTON.addEventListener('click', function gradient(){
+    GRADIENTBUTTON.classList.toggle('pushed');
     rainbowActivated = false;
     eraser = false;
+    if (RAINBOWBUTTON.classList.contains('pushed')){
+        RAINBOWBUTTON.classList.remove('pushed');
+    }
+    if (ERASERBUTTON.classList.contains('pushed')){
+        ERASERBUTTON.classList.remove('pushed');
+    }
     (gradientActivated ===false)? gradientActivated =true : gradientActivated =false;
     if (gradientActivated === false) color = DEFAULTHOVERCOLOR;
     LightItUp(color);
@@ -219,7 +233,19 @@ GRADIENTBUTTON.addEventListener('click', function gradient(){
 ERASERBUTTON.addEventListener('click', function eraseFctn(){
     rainbowActivated = false;
     gradientActivated = false;
-    (eraser===false)? eraser=true : eraser=false;
+    if (RAINBOWBUTTON.classList.contains('pushed')){
+        RAINBOWBUTTON.classList.remove('pushed');
+    } 
+    if (GRADIENTBUTTON.classList.contains('pushed')){
+        GRADIENTBUTTON.classList.remove('pushed');
+    }
+    if (eraser===false){ 
+        eraser=true;
+        ERASERBUTTON.classList.add('pushed');
+    } else {
+        eraser=false;
+        ERASERBUTTON.classList.remove('pushed');
+    }
     LightItUp(color);
 })
 
@@ -230,6 +256,7 @@ BACKGROUNDPICKER.addEventListener('change', function(){
 })
 
 BORDERS.addEventListener ('click', function toggleBorders(){
+    BORDERS.classList.toggle('pushed');
     boxes.forEach(box => {
         box.classList.toggle('borderToggle');
     })

@@ -34,6 +34,7 @@ body {
 .colorPickers{
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 .box {
@@ -81,7 +82,7 @@ button{
 
 
 h1{
-    -webkit-text-stroke: 0px red;
+    -webkit-text-stroke: 0px #F65C51;   /* text border */
     font-family: retro;
     font-size: 45px;
     color: #F7B15C;
@@ -127,4 +128,15 @@ p{
     color: #F7B15C;
     text-shadow: 1px 1px 0px #F65C51, 4px 4px 0px black, 5px 5px 0px black, 6px 6px 0px black;
     font-size: 16px;
+}
+
+.pushed {
+    background-color: #facf9b;
+}
+
+#colorPicker,
+#backgroundPicker {
+    background-color: #F7B15C;
+    border: #F65C51 1px solid;
+    box-shadow: 8px 8px 0px black;
 }
