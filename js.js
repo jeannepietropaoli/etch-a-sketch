@@ -16,7 +16,7 @@ let gradientActivated = false;
 let eraser = false;
 let boxes;
 let DEFAULTCOLOR= 'rgb(255,255,255)';
-const DEFAULTHOVERCOLOR='rgb(255,100,100)';
+const DEFAULTHOVERCOLOR='rgb(229,36,63)';
 let color= DEFAULTHOVERCOLOR;
 let r;
 let g;

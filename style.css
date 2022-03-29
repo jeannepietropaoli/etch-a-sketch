@@ -1,12 +1,19 @@
+@font-face {
+    font-family: retro;
+    src: url(retro4.ttf);
+  }
+
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #2F5755;
 }
 
 .gameAndMenu{
     display: flex;
     align-items: center;
+    gap: 30px;
 }
 
 .menu{
@@ -15,7 +22,9 @@ body {
     justify-content: space-evenly;
     height: 600px;
     width: auto;
-    border: 1px solid red;
+    padding: 15px;
+    border: 1px solid #54C6BE;
+    box-shadow: 5px 5px 0px black;
     
 }
 
@@ -29,18 +38,34 @@ body {
 }
 
 .borderToggle {
-    border: solid black 1px;
+    border: solid grey 1px;
+}
+
+button{
+    border: 3px solid #F65C51;
+    padding: 7px;
+    background-color: #F7B15C;
+    box-shadow: 8px 8px 0px black;
+}
+
+.buttons:hover {
+    cursor: pointer;
+}
+
+.colorPicker {
+    display: flex;
 }
 
 .container {
+    background-color: #F7B15C;
     display: flex;
     flex-direction: row;
     width: 600px;
     height: 600px;
-    border: 1px solid black;
+    border: 3px solid #F65C51;
     border-radius: 9px;
-    padding: 4px;
-    box-shadow: 12px 12px 0px black;
+    padding: 5px;
+    box-shadow: 13px 13px 0px black;
 }
 
 .column {
@@ -48,3 +73,28 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+
+h1{
+    -webkit-text-stroke: 0px red;
+    font-family: retro;
+    font-size: 45px;
+    color: #F7B15C;
+    text-shadow: -1px 1px 0px black, -2px 2px 0px #F65C51, -4px 3px 0px #F65C51, -4px 4px 0px black, -6px 6px 0px black, -8px 8px 0px black, -9px 9px 0px black;
+  -webkit-background-clip: text;
+     -moz-background-clip: text;
+          background-clip: text;
+    
+}
+
+p{
+    color: #F7B15C;
+    text-shadow: 1px 1px 0px #F65C51, 4px 4px 0px black, 5px 5px 0px black, 6px 6px 0px black;
+}
+
+.slider,
+.colorPickers{
+    color: #F7B15C;
+    text-shadow: 1px 1px 0px #F65C51, 4px 4px 0px black, 5px 5px 0px black, 6px 6px 0px black;
+}
+

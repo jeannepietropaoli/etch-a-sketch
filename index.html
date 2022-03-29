@@ -10,22 +10,32 @@
 </head>
 
 <body>
-    <h1>Etch a skecth</h1>
+    <h1 class="test">etch a skecth</h1>
     <div class="gameAndMenu">
         <div class="container"></div>
         <div class="menu">
-            <button class="clearButton">Reset</button>
+            <button class="clearButton buttons">Reset</button>
             <div class="colorPickers">
-                <input type="color" id="colorPicker" name="Pencil color">
-                <input type="color" id="backgroundPicker" name="Background color">
+                <div class="colorPicker">
+                    <input type="color" id="colorPicker" name="Pencil color" class="buttons">
+                    <div>Pencil color</div>
+                </div>
+                <div class="colorPicker">
+                    <input type="color" id="backgroundPicker" name="Background color" class="buttons">
+                    <div>Canvas color</div>
+                </div>
             </div>
-            <button class="rainbowMode">Toggle Rainbow mode</button>
-            <button class="gradient">Toggle Gradient Mode</button>
-            <button class="eraser">Toggle Eraser mode</button>
-            <button class="borders">Toggle pixel borders</button>
-            <input type="range" min="2" max="99" id="slider">
+            <button class="rainbowMode buttons">Toggle Rainbow mode</button>
+            <button class="gradient buttons">Toggle Gradient Mode</button>
+            <button class="eraser buttons">Toggle Eraser mode</button>
+            <button class="borders buttons">Toggle pixel borders</button>
+            <div class="slider"> 
+                <input type="range" min="2" max="99" id="slider" class="buttons">
+                <div>Canvas resolution</div>
+            </div>
         </div>
     </div>
+    <p>Click inside the canvas to toggle the drawing pencil: you can start and stop where you want</p>
 </body>
 
 </html>
