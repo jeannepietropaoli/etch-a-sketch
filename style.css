@@ -5,7 +5,9 @@
 
 body {
     display: flex;
+    min-height: 100vh;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     background-color: #2F5755;
 }
@@ -54,6 +56,8 @@ button{
 
 .colorPicker {
     display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .container {
@@ -90,6 +94,14 @@ h1{
 p{
     color: #F7B15C;
     text-shadow: 1px 1px 0px #F65C51, 4px 4px 0px black, 5px 5px 0px black, 6px 6px 0px black;
+    font-size: 20px;
+}
+
+.slider{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
 }
 
 .slider,
@@ -98,3 +110,20 @@ p{
     text-shadow: 1px 1px 0px #F65C51, 4px 4px 0px black, 5px 5px 0px black, 6px 6px 0px black;
 }
 
+.icon{
+    height: 30px;
+    width: auto;
+    margin-bottom: -9px;
+    padding: 0px 8px 0px 8px;
+}
+
+.footer{
+    flex: 1;
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    padding: 8px;
+    color: #F7B15C;
+    text-shadow: 1px 1px 0px #F65C51, 4px 4px 0px black, 5px 5px 0px black, 6px 6px 0px black;
+    font-size: 16px;
+}
