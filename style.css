@@ -7,7 +7,7 @@ html {
     height: 100vh;
 }
 body {
-    min-height: 100%;
+    min-height: 98%;
 }
 
 body {
@@ -95,6 +95,7 @@ h1{
   -webkit-background-clip: text;
      -moz-background-clip: text;
           background-clip: text;
+          margin-top: 1%;
 }
 
 p{
