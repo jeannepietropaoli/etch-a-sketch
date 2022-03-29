@@ -10,6 +10,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     background-color: #2F5755;
+    overflow-y: hidden;
 }
 
 .gameAndMenu{
