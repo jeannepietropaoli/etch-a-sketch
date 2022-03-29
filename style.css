@@ -3,14 +3,19 @@
     src: url(retro4.ttf);
   }
 
+html {
+    height: 100vh;
+}
+body {
+    min-height: 100%;
+}
+
 body {
     display: flex;
-    min-height: 100vh;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     background-color: #2F5755;
-    overflow-y: hidden;
 }
 
 .gameAndMenu{
@@ -90,7 +95,6 @@ h1{
   -webkit-background-clip: text;
      -moz-background-clip: text;
           background-clip: text;
-    
 }
 
 p{
@@ -120,7 +124,6 @@ p{
 }
 
 .footer{
-    flex: 1;
     margin-top: auto;
     display: flex;
     align-items: flex-end;
