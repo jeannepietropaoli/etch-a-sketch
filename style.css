@@ -1,0 +1,139 @@
+@font-face {
+    font-family: retro;
+    src: url(retro4.ttf);
+  }
+
+html {
+    height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #2F5755;
+    min-height: 98%;
+}
+
+h1{
+    font-family: retro;
+    font-size: 45px;
+    color: #F7B15C;
+    text-shadow: -1px 1px 0px black, -2px 2px 0px #F65C51, -4px 3px 0px #F65C51, -4px 4px 0px black, -6px 6px 0px black, -8px 8px 0px black, -9px 9px 0px black;
+    margin-top: 1%;
+}
+
+.gameAndMenu{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* grid style */
+.container {
+    background-color: #F7B15C;
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    height: 600px;
+    border: 3px solid #F65C51;
+    border-radius: 9px;
+    padding: 5px;
+    box-shadow: 13px 13px 0px black;
+}
+
+.box {
+    flex: 1;
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 600px;
+    width: auto;
+    padding: 15px;
+    border: 1px solid #54C6BE;
+    box-shadow: 5px 5px 0px black;
+}
+
+button{
+    border: 3px solid #F65C51;
+    padding: 7px;
+    background-color: #F7B15C;
+    box-shadow: 8px 8px 0px black;
+}
+
+.buttons:hover {
+    cursor: pointer;
+}
+
+.colorPickers{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.colorPicker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#colorPicker,
+#backgroundPicker {
+    background-color: #F7B15C;
+    border: #F65C51 1px solid;
+    box-shadow: 8px 8px 0px black;
+}
+
+.slider,
+.colorPickers{
+    color: #F7B15C;
+    text-shadow: 1px 1px 0px #F65C51, 4px 4px 0px black, 5px 5px 0px black, 6px 6px 0px black;
+}
+
+.borderToggle {
+    border: solid grey 1px;
+}
+
+.pushed {
+    background-color: #facf9b;
+}
+
+.slider{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.info{
+    color: #F7B15C;
+    text-shadow: 1px 1px 0px #F65C51, 4px 4px 0px black, 5px 5px 0px black, 6px 6px 0px black;
+    font-size: 20px;
+}
+
+.footer{
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    padding: 15px;
+    color: #F7B15C;
+    text-shadow: 1px 1px 0px #F65C51, 4px 4px 0px black, 5px 5px 0px black, 6px 6px 0px black;
+    font-size: 16px;
+}
+
+.icon{
+    height: 30px;
+    width: auto;
+    margin-bottom: -9px;
+    padding: 0px 8px 0px 8px;
+}

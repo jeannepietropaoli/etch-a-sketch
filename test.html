@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Etch-a-sketch project</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <button class="clearButton">Clear the grid</button>
+    <button class="rainbowMode">Toggle Rainbow mode</button>
+    <button class="gradient">Toggle Gradient Mode</button>
+    <div class="container"></div>
+
+    <script>
+
+let color = '#f355ff'
+function hexToRGB(color) {
+    color = color.substring(1);   // remove the #before the hex color string
+    let colorSplit = [];
+
+    for (let index = 0; index < color.length; index += 2) {    // split the hex color string every 2 characters
+    colorSplit.push(color.slice(index, index + 2));
+  }
+  for (let j=0 ; j<colorSplit.length ; j++) {
+      colorSplit[j] = parseInt(colorSplit[j], 16);
+  }
+
+  colorSplit = colorSplit.join(',');
+  color = `rgb(${colorSplit})`
+}
+
+  hexToRGB(color);
+
+
+    </script>
+</body>
+
+</html>
